@@ -17,7 +17,7 @@ There's one in your kits. It has three pins. The outer two pins can be connected
 When wiring a potentiometer, wire either left or the right terminal to ground; the remaining outer terminal to power (Vin or 3v3) and the middle terminal to an analog pin you want to read from.
 
 Next we're going to wire up a potentiometer and allow you to fade up and down an LED as you turn the dial.
-
+ 
 ## Circuit
 
 Make some changes to the circuit and add in the potentiometer: 

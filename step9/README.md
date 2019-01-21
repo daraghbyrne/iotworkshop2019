@@ -8,7 +8,7 @@ We can do this simply by just changing the information we pass in the `Particle.
 
 Let's add in Etherium, Bitcoin cash  and more!
 
-## More cities
+## More currencies
 
 First things first let's add two new global variables at the top. These will store the name of the city we're looking at and the number (relating to how far the potentiometer is turned.) Pop these two lines in at the top of your code:
 

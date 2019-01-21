@@ -1,37 +1,41 @@
-int redPin = D0;    // RED pin of the LED to PWM pin **A0**
-int greenPin = D1;  // GREEN pin of the LED to PWM pin **D0**
-int bluePin = D2;   // BLUE pin of the LED to PWM pin **D1**
-int redValue = 255; // Full brightness for an ANODE RGB LED is 0, and off 255
-int greenValue = 255; // Full brightness for an ANODE RGB LED is 0, and off 255
-int blueValue = 255; // Full brightness for an ANODE RGB LED is 0, and off 255</td>
+// This #include statement was automatically added by the Particle IDE.
+#include <neopixel.h>
+
+// IMPORTANT: Set pixel COUNT, PIN and TYPE
+#define PIXEL_COUNT 1
+#define PIXEL_PIN D7
+#define PIXEL_TYPE WS2812B
+Adafruit_NeoPixel strip(PIXEL_COUNT, PIXEL_PIN, PIXEL_TYPE);
+
+int redValue = 0; // Full brightness for an ANODE RGB LED is 0, and off 255
+int greenValue = 0; // Full brightness for an ANODE RGB LED is 0, and off 255
+int blueValue = 0; // Full brightness for an ANODE RGB LED is 0, and off 255</td>
 
 // Our button wired to D0
-int buttonPin = D4;
+int buttonPin = D3;
 
 // store the last value the button registered
 bool previousButtonState = LOW;
 
 // Define a pin that we'll place the pot on
-int potPin = A0;
+int potPin = A5;
 // Create a variable to hold the pot reading
 int potReading = 0;
 
 // status ledPin
-int ledPin = D3;
+int ledPin = D2;
 int ledValue = 255;
 
 
 // store the current application
 // is it progrmatically on or off
-bool currentHueState = LOW;
+bool currentHueState = HIGH;
 
 
 void setup()
 {
-  // Set up our pins for output
-  pinMode( redPin, OUTPUT);
-  pinMode( greenPin, OUTPUT);
-  pinMode( bluePin, OUTPUT);
+  // Set up our NEOPIXEL RGB Pin pins for output
+  strip.begin();
 
   pinMode( ledPin, OUTPUT);
 
@@ -60,10 +64,8 @@ void setup()
 
   Particle.subscribe( "iot-workshop/hue/setcolor", handleSetColor );
 
-  // turn them all off...
-  analogWrite( redPin, redValue);
-  analogWrite( greenPin, greenValue);
-  analogWrite( bluePin, blueValue);
+
+
 
 }
 
@@ -72,7 +74,7 @@ void loop()
 
     int buttonState = digitalRead( buttonPin );
 
-    if( buttonState != previousButtonState )
+    if( buttonState != previousButtonState && buttonState == LOW )
     {
       currentHueState = !currentHueState;
 
@@ -88,19 +90,17 @@ void loop()
     previousButtonState = buttonState;
 
 
-    if( currentHueState == LOW ){
+    if( !currentHueState ){
         offColorLED( );
     }else{
       int currentVal = analogRead( potPin );
-      if( abs( currentVal - potReading ) > 10 ) {
+      if( abs( currentVal - potReading ) > 15 ) {
         int val = map(potReading , 0, 4095, 0, 255 );
         wheel( val );
         updateColorLED();
         potReading = currentVal;
       }
     }
-
-
 
     // wait 1 second
     delay( 1000 );
@@ -154,17 +154,15 @@ void blinkStatusLED(){
 }
 
 void updateColorLED( ){
-  //RGB.color( redValue,greenValue,blueValue);
-  analogWrite(redPin, 255 - redValue);
-  analogWrite(greenPin, 255 - greenValue);
-  analogWrite(bluePin, 255 - blueValue);
+
+  strip.setPixelColor(0, redValue, greenValue, blueValue);
+  strip.show();
 
 }
 void offColorLED( ){
 
-  analogWrite(redPin, 255);
-  analogWrite(greenPin, 255);
-  analogWrite(bluePin, 255);
+  strip.setPixelColor(0, 0, 0, 0);
+  strip.show();
 }
 
 

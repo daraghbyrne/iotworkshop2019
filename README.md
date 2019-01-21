@@ -33,7 +33,7 @@ By the end of this workshop you'll have built a simple ambient bitcoin price vis
 - Step 4: [Adding Internet - Seeing Values](/step4)
 - Step 5: [Controling Color](/step5)
 - Step 6: [Bitcoin Data](/step6)
-- TODO - Step 7: [Displaying Data](/step7)
+- Step 7: [Displaying Data](/step7)
 - TODO - Step 8: [Better Loading](/step8)
 - TODO - Step 9: [Adding Multiple Currencies](/step9)
 - TODO - Step 10: [Fine Tuning - On/Off](/step10)

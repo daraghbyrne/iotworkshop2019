@@ -1,28 +1,36 @@
-int redPin = D0;    // RED pin of the LED to PWM pin **A0**
-int greenPin = D1;  // GREEN pin of the LED to PWM pin **D0**
-int bluePin = D2;   // BLUE pin of the LED to PWM pin **D1**
-int redValue = 255; // Full brightness for an ANODE RGB LED is 0, and off 255
-int greenValue = 255; // Full brightness for an ANODE RGB LED is 0, and off 255
-int blueValue = 255; // Full brightness for an ANODE RGB LED is 0, and off 255</td>
+// This #include statement was automatically added by the Particle IDE.
+#include <neopixel.h>
 
+// MAIN COMPONENTS
 
 // Define a pin we'll place an LED on
-int ledPin = D3;
+int ledPin = D2;
 
 // Our button wired to D0
-int buttonPin = D4;
+int buttonPin = D3;
 
 // Define a pin that we'll place the pot on
-int potPin = A0;
+int potPin = A5;
 
 // Create a variable to hold the pot reading
 int potReading = 0;
 
-String weatherIcon = "";
-double temperature = 0;
-double precipProbability = 0;
-double precipIntensity = 0;
+// -------- NEOPIXEL
 
+
+// IMPORTANT: Set pixel COUNT, PIN and TYPE
+#define PIXEL_COUNT 1
+#define PIXEL_PIN D7
+#define PIXEL_TYPE WS2812B
+Adafruit_NeoPixel strip(PIXEL_COUNT, PIXEL_PIN, PIXEL_TYPE);
+
+int redValue = 0; // Full brightness for an ANODE RGB LED is 0, and off 255
+int greenValue = 0; // Full brightness for an ANODE RGB LED is 0, and off 255
+int blueValue = 0; // Full brightness for an ANODE RGB LED is 0, and off 255</td>
+
+
+// Store the bitcoin readings
+double currencyChange = 0;
 
 
 void setup()
@@ -31,10 +39,8 @@ void setup()
   pinMode(ledPin, OUTPUT);
 
 
-  // Set up our RGB LED pins for output
-  pinMode( redPin, OUTPUT);
-  pinMode( greenPin, OUTPUT);
-  pinMode( bluePin, OUTPUT);
+  // Set up our NEOPIXEL RGB Pin pins for output
+  strip.begin();
 
   // For input, we define the
   // pushbutton as an input-pullup
@@ -46,14 +52,10 @@ void setup()
   // Create a cloud variable of type integer
   // called 'dial' mapped to potReading
 
-  Particle.variable("dial", potReading );
+  Particle.variable("dial", &potReading, INT);
+  Particle.variable("change", currencyChange );
 
-	// subscribe to the response from the webhook
-  Particle.subscribe("hook-response/forecast", handleForecastReceived, MY_DEVICES);
-
-	// make the temperature values visible online
-  Particle.variable("temp", temperature );
-
+  Particle.subscribe("hook-response/bitcoin", handleBitcoinPriceReceived, MY_DEVICES);
 
 	getData();
 
@@ -62,8 +64,8 @@ void setup()
 void loop()
 {
 
-		displayTemperature();
-    delay( 1000 );
+   displayChange();
+
 }
 
 
@@ -72,62 +74,71 @@ void loop()
 // So we set our RGB values to be 255 - value (invert them)
 
 void setRGBColor( int r, int g, int b ){
-
   redValue = r;
   greenValue = g;
   blueValue = b;
 
-  analogWrite(redPin, 255 - redValue);
-  analogWrite(greenPin, 255 - greenValue);
-  analogWrite(bluePin, 255 - blueValue);
+  strip.setPixelColor(0, redValue, greenValue, blueValue);
+  strip.show();
+  
 }
-
 
 void getData()
 {
 	// Publish an event to trigger the webhook
-	  Particle.publish("forecast", "40.4406,-79.9959", PRIVATE);
+   Particle.publish("bitcoin", "BTC-USD", PRIVATE);
 }
 
 
-void displayTemperature()
-{
-		// the temperature from 40-80F into the color range of 0-255
-    int tCol = map( (int)(temperature), 40, 80 , 0 , 255 );
-		// make sure its in that range
-		// not bigger or smaller!
-    tCol = constrain( tCol, 0, 255 );
-
-		// map the color in.
-		// if t is high so is Red
-		// if t is low, blue is high
-
-    setRGBColor( tCol , 0, 255 - tCol );
-
-}
-
-
-void handleForecastReceived(const char *event, const char *data) {
+void handleBitcoinPriceReceived(const char *event, const char *data) {
   // Handle the integration response
 
   String receivedStr =  String( data );
-  int loc1 = 0;
-  int loc2 = 0;
-  int loc3 = 0;
-  int loc4 = 0;
+  // take the received string
+  // convert it to a floating point number
+  // then to a double
+  currencyChange = (double) receivedStr.toFloat();
 
-  loc1 = receivedStr.indexOf("~");
+  isLoading = false;
 
-  weatherIcon = receivedStr.substring(0,loc1);
 
-  loc2 = receivedStr.indexOf("~",loc1+1);
-  temperature = (double) String(receivedStr.substring(loc1+1,loc2)).toFloat();
+}
 
-  loc3 = receivedStr.indexOf("~",loc2+1);
-  precipProbability = (double) String(receivedStr.substring(loc2+1,loc3)).toFloat();
 
-  loc4 = receivedStr.indexOf("~",loc3+1);
-  precipIntensity = (double) String(receivedStr.indexOf(loc3+1)).toFloat();
 
+void displayChange()
+{
+    // the change is in %
+    // map takes an integer.
+    // lets magnify the change by multipling by 100
+    // i.e 1.106% becomes 110.6 
+    // and -5.678 becomes -567.8
+    // then convert to an integer
+
+   int chnge = (int)(currencyChange * 100 ) ;
+
+   // using map we can convert this into a color range
+   // we'll go from 5% to -5%
+   int color = map( chnge, -500, 500 , 0 , 255 );
+   // make sure its in that range
+   // not bigger or smaller!
+  
+   // switch the axes so a low number = closer to red
+   color = 255 - constrain( color, 0, 255 );
+
+   // map the color in.
+   // if t is high so is Red
+   // if t is low, blue is high
+ 
+   targetRed = color ;
+   targetGreen = 0;
+   targetBlue =  255 - color;
+  
+   if( !isLoading && displayImmediately ){
+      
+     setRGBColor( targetRed , 0, targetBlue );
+     displayImmediately = false;
+      
+   }
 
 }

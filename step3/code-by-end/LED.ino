@@ -1,11 +1,11 @@
 // Define a pin we'll place an LED on
-int ledPin = D3;
+int ledPin = D2;
 
 // Our button wired to D0
-int buttonPin = D4;
+int buttonPin = D3;
 
 // Define a pin that we'll place the pot on
-int potPin = A0;
+int potPin = A5;
 
 // Create a variable to hold the pot reading
 int potReading = 0;

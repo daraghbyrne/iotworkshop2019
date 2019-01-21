@@ -24,7 +24,7 @@ Make some changes to the circuit and add in the potentiometer:
 
 - Wire one side to ground (GND)
 - Wire the other to Power (3V3)
-- Wire the middle to A0
+- Wire the middle to A5
 
 ![Potentiometer circuit](LedSwitchPot_bb.png)
 
@@ -34,13 +34,13 @@ Use the LED code from Step 1 as a starting point for this sketch. The [completed
 
 We'll start by adding three variables to the top of our code
 
-1. The first will reference the pin that we're going to connect the potentiometer to `A0`
+1. The first will reference the pin that we're going to connect the potentiometer to `A5`
 2. The second will store a value that we read from the potentiometer
 3. The third will be a variable to store some info about the light levels (how much or how little have we faded it by)
 
 ````
 // Define a pin that we'll place the pot on
-int potPin = A0;
+int potPin = A5;
 
 // Create a variable to hold the pot reading
 int potReading = 0;
@@ -51,7 +51,7 @@ int ledBrightness = 0;
 
 In this example we don't need to make any changes to the `setup()` so we'll focus on the `loop()`
 
-First in our loop we'll read a value from `A0`. We'll use a function called analogRead to do this.
+First in our loop we'll read a value from `A5`. We'll use a function called analogRead to do this.
 
 ```
  // Use analogRead to read the potentiometer reading

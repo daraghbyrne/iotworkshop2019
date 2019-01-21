@@ -18,7 +18,7 @@ Make some changes to the circuit as follows:
 
 - Add a pushbutton on the left hand side. 
 - Wire one side to ground (`GND`)
-- Wire the other to `D4`
+- Wire the other to `D3`
 
 Notice that we’ve wired the pushbutton to ground, and not to power. This is because unlike sensors we can use an internal pullup resistor to get consistent readings from the pushbutton. 
 
@@ -29,13 +29,13 @@ Use the LED code from Step 1 as a starting point for this sketch. The [completed
 First add a new variable at the top of your code
 
 `````
-// Our button wired to D4
-int buttonPin = D4;
+// Our button wired to D3
+int buttonPin = D3;
 `````
 
-This says we're going to work with D4
+This says we're going to work with D3
 
-Next in our setup we'll tell our microcontroller that we plan to use the button attached to D4 as a input like so
+Next in our setup we'll tell our microcontroller that we plan to use the button attached to D3 as a input like so
 
 ````
 void setup()
@@ -112,10 +112,11 @@ Great. We're good to go now...
 
 Try it out by pressing the button on your circuit!
 
-
 ## Things to Try 
 
-Instead of turning the LED On and off with the press, use the button to toggle the LED on or off 
+Exercise:
+
+Instead of turning the LED On and Off with the press, use the button to toggle the LED on or off 
 
 
 

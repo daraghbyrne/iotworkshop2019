@@ -34,9 +34,10 @@ By the end of this workshop you'll have built a simple ambient bitcoin price vis
 - Step 5: [Controling Color](/step5)
 - Step 6: [Bitcoin Data](/step6)
 - Step 7: [Displaying Data](/step7)
-- TODO - Step 8: [Better Loading](/step8)
-- TODO - Step 9: [Adding Multiple Currencies](/step9)
-- TODO - Step 10: [Fine Tuning - On/Off](/step10)
+- Step 8: [Better Loading](/step8)
+- Step 9: [Adding Multiple Currencies](/step9)
+- Step 10: [On/Off](/step10)
+- Step 11: [Fine Tuning](/step11)
 
 By the end of this you should have a working Ambient Orb . This is only a starting point. With a little effort, you can easily modify this example to be an ambient orb that visualizes a tonne of different content. It could be adapted to display weather, stock prices, arriving buses, slack notifications, inbox count, and lots more. 
 

@@ -1,26 +1,28 @@
-# Step 9: Multiple Cities
+# Step 9: Multiple Currencies
 
 Wouldn't it be nice if we could decide what cities we looked at the weather for? 
 
-In this step, we're going to use the potentiometer as a way to scrub through cities and get information for lots of different places. 
+In this step, we're going to use the potentiometer as a way to scrub through different curriencies and get information for lots of different situations. 
 
-We can do this simply by just changing the information we pass in the `Particle.publish` for the webhook. Until now we've used `Particle.publish("forecast", "40.4406,-79.9959", PRIVATE);` but we can use any lat and lon values in there to retrieve the weather for any number of cities. 
+We can do this simply by just changing the information we pass in the `Particle.publish` for the webhook. Until now we've used `   Particle.publish("bitcoin", "BTC-USD", PRIVATE);;` but we can use any lat and lon values in there to retrieve the weather for any number of cities. 
 
-Let's add in Phoenix, San Fran, Syndey, Dublin and more!
+Let's add in Etherium, Bitcoin cash  and more!
 
 ## More cities
 
 First things first let's add two new global variables at the top. These will store the name of the city we're looking at and the number (relating to how far the potentiometer is turned.) Pop these two lines in at the top of your code:
 
 ````
-String currentCity = "none";
-int cityIndex = 0;
+
+String currentCurrency = "none";
+int currencyIndex = 0;
+
 ````
 
 It'd also be nice if we had a variable, so we can easily look up city is being presented. Pop this line into the end of your `setup()`
 
 ````
-  Particle.variable("city", &currentCity, STRING );
+  Particle.variable("currency", currentCurrency );
 ````
 
 We don't need to change the loop at all but we do need to make two big changes to:
@@ -34,9 +36,11 @@ In `checkForRefresh` add the following lines. This reads in from the potentomete
 ````
   // has the dial changed
 
-  int newcityIndex = map(  analogRead( potPin ), 0, 4095, 0, 6 );
-  if( newcityIndex != cityIndex ){
-    getData();
+  if( abs( analogRead( potPin ) - potReading ) > 10 ){
+    int newCurrencyIndex = map(  analogRead( potPin ), 0, 4095, 0, 5 );
+    if( newCurrencyIndex != currencyIndex ){
+        getData();
+    }
   }
 ````
 
@@ -52,31 +56,29 @@ void getData()
   Serial.println( "requesting Data" );
 
   potReading = analogRead( potPin ) ;
-  cityIndex = map( potReading, 0, 4095, 0, 6 );
+  currencyIndex = map( potReading, 0, 4095, 0, 5 );
 
-  if( cityIndex == 0 ){
-    // Pittsburgh
-    currentCity = "Pittsburgh";
-    Particle.publish("forecast", "40.4406,-79.9959", PRIVATE);
-  }else if( cityIndex == 1 ){
-    currentCity = "Phoenix";
-    Particle.publish("forecast", "33.448376,-112.074036", PRIVATE);
-  }else if( cityIndex == 2 ){
-    currentCity = "San Francisco";
-    Particle.publish("forecast", "37.7749,-122.4194", PRIVATE);
-  }else if( cityIndex == 3 ){
-    currentCity = "Sydney";
-    Particle.publish("forecast", "-33.8688,151.2093", PRIVATE);
-  }else if( cityIndex == 4 ){
-    currentCity = "Dublin";
-    Particle.publish("forecast", "53.3498,-6.2603", PRIVATE);
-  }else if( cityIndex == 5 ){
-    currentCity = "Antarctica";
-    Particle.publish("forecast", "-82.8628,-135.0000", PRIVATE);
+  if( currencyIndex == 0 ){
+    currentCurrency = "Bitcoin";
+    Particle.publish("bitcoin", "BTC-USD", PRIVATE);
+  }else if( currencyIndex == 1 ){
+    currentCurrency = "Ethereum";
+    Particle.publish("bitcoin", "ETH-USD", PRIVATE);
+  }else if( currencyIndex == 2 ){
+    currentCurrency = "Litecoin";
+    Particle.publish("bitcoin", "LTC-USD", PRIVATE);
+  }else if( currencyIndex == 3 ){
+    currentCurrency = "XRP";
+    Particle.publish("bitcoin", "XRP-USD", PRIVATE);
+  }else if( currencyIndex == 4 ){
+    currentCurrency = "Bitcoin Cash";
+    Particle.publish("bitcoin", "BCH-USD", PRIVATE);
   }
 
-  Serial.println( currentCity );
 
+	// Publish an event to trigger the webhook
+   Particle.publish("bitcoin", "BTC-USD", PRIVATE);
+	
 
   isLoading = true;
 }

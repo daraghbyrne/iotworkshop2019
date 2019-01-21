@@ -88,7 +88,7 @@ void getData()
 And in the handler for webhook responses i.e. when we've got the information back we'll want to set the variable to not-loading or false> Like so:
 
 ````
-void handleForecastReceived(const char *event, const char *data) {
+void handleBitcoinPriceReceived(const char *event, const char *data) {
 
   isLoading = false; 
 	

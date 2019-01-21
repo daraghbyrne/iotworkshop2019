@@ -1,6 +1,9 @@
-int redPin = D0;    // RED pin of the LED to PWM pin **A0**
-int greenPin = D1;  // GREEN pin of the LED to PWM pin **D0**
-int bluePin = D2;   // BLUE pin of the LED to PWM pin **D1**
+// IMPORTANT: Set pixel COUNT, PIN and TYPE
+#define PIXEL_COUNT 1
+#define PIXEL_PIN D7
+#define PIXEL_TYPE WS2812B
+Adafruit_NeoPixel strip(PIXEL_COUNT, PIXEL_PIN, PIXEL_TYPE);
+
 int redValue = 255; // Full brightness for an ANODE RGB LED is 0, and off 255
 int greenValue = 255; // Full brightness for an ANODE RGB LED is 0, and off 255
 int blueValue = 255; // Full brightness for an ANODE RGB LED is 0, and off 255</td>
@@ -26,11 +29,8 @@ void setup()
   // Set up the LED for output
   pinMode(ledPin, OUTPUT);
 	
-  // Set up our RGB LED pins for output
-  pinMode( redPin, OUTPUT);
-  pinMode( greenPin, OUTPUT);
-  pinMode( bluePin, OUTPUT);
-	
+  // Set up our NEOPIXEL RGB Pin pins for output
+  strip.begin();	
 
   // For input, we define the
   // pushbutton as an input-pullup
@@ -79,7 +79,6 @@ void setRGBColor( int r, int g, int b ){
   greenValue = g;
   blueValue = b;
 	
-  analogWrite(redPin, 255 - redValue);
-  analogWrite(greenPin, 255 - greenValue);
-  analogWrite(bluePin, 255 - blueValue);
+  strip.setPixelColor(0, redValue, greenValue, blueValue);
+  strip.show();
 }

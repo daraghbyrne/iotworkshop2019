@@ -1,4 +1,4 @@
-# Step 6: Ambient Weather
+# Step 6: Ambient Bitcoin
 
 All the pieces are in place. We just need to bring them together...
 
@@ -14,15 +14,17 @@ The way webhooks work is as follows:
 3. When it's found it, it publishes a new event called 'hook-response/webhookname' that my decive is listening for. This event has the info we want in it.
 4. My device gets the info and can do cool stuff. 
 
-Before the workshop, I set up a webhook you can use. It's called `forecast`. It gets information from [DarkSky](https://darksky.net/forecast/40.5465,-80.0525/us12/en) - an online platform that specializes in weather forecasting and visualization. Perfect! 
+Before the workshop, I set up a webhook you can use. It's called `bitcoin`. It gets information from [cryptonator](https://www.cryptonator.com/api) - an online platform that specializes in bitcoin currency pricing. Perfect! 
 
-The webhook asks for one bit of information - the latitude and longitude for the place you want weather info on - and it sends back four things:
-- a label for the current weather in that location
-- the temperature
-- the probability of rain 
-- the intensity of rain (millimeters per hour)
+The webhook asks for one bit of information - the currency you want to get exchange and pricing information - and it sends back four things:
 
-We're going to add these into our code and have it look up weather information for Pittsburgh (lat: 40.4406, lon: -79.9959)! 
+- Base - Base currency code
+- Target - Target currency code
+- Price - Volume-weighted price
+- Volume - Total trade volume for the last 24 hours
+- Change - Past hour price change
+
+We're going to add these into our code and have it look up bitcoin pricing
 
 ### Starting point.
 
@@ -45,8 +47,8 @@ You'll then be asked to add the info for your webhook.
 
 Add the following: 
 
-- Event Name: `forecast`
-- URL: `https://api.forecast.io/forecast/6c14a2c2252120d69604c1e6cc2074bf/{{PARTICLE_EVENT_VALUE}}?exclude=minutely,hourly,daily,flags,alerts`
+- Event Name: `bitcoin`
+- URL: `https://api.cryptonator.com/api/ticker/{{{PARTICLE_EVENT_VALUE}}}`
 - Request Type: `GET`
 - Request Format: `JSON`
 - Device: `Any`
@@ -55,7 +57,7 @@ Select the Advanced Options:
 
 Under `Response Template`, add the following
 
-`{{#currently}}{{icon}}~{{temperature}}~{{precipProbability}}~{{precipIntensity}}{{/currently}}`
+`{{ticker.change}}`
 
 Then create the WebHook! 
 
@@ -70,34 +72,24 @@ Copy and paste the following into the end of your code file
 void getData()
 {
 	// Publish an event to trigger the webhook
-  Particle.publish("forecast", "40.4406,-79.9959", PRIVATE);
+   Particle.publish("bitcoin", "BTC-USD", PRIVATE);
 }
 
-// This function will handle data received back from the webhook
-void handleForecastReceived(const char *event, const char *data) {
+
+void handleBitcoinPriceReceived(const char *event, const char *data) {
   // Handle the integration response
 
   String receivedStr =  String( data );
-  int loc1 = 0;
-  int loc2 = 0;
-  int loc3 = 0;
-  int loc4 = 0;
+  // take the received string
+  // convert it to a floating point number
+  // then to a double
+  currencyChange = (double) receivedStr.toFloat();
 
-  loc1 = receivedStr.indexOf("~");
-
-  weatherIcon = receivedStr.substring(0,loc1);
-
-  loc2 = receivedStr.indexOf("~",loc1+1);
-  temperature = (double) String(receivedStr.substring(loc1+1,loc2)).toFloat();
-
-  loc3 = receivedStr.indexOf("~",loc2+1);
-  precipProbability = (double) String(receivedStr.substring(loc2+1,loc3)).toFloat();
-
-  loc4 = receivedStr.indexOf("~",loc3+1);
-  precipIntensity = (double) String(receivedStr.indexOf(loc3+1)).toFloat();
+  isLoading = false;
 
 
 }
+
 `````
 
 Making progress.
@@ -105,7 +97,7 @@ Making progress.
 Now you also need to tell your Argon to listen for the response to the webhook. To do this, add this line of code to the end of your `setup()`
 
 `````
-  Particle.subscribe("hook-response/forecast", handleForecastReceived, MY_DEVICES);
+  Particle.subscribe("hook-response/bitcoin", handleBitcoinPriceReceived, MY_DEVICES);
 
 `````
 This registers for the webhook response and maps it into the function we just added...

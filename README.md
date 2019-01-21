@@ -30,7 +30,7 @@ By the end of this workshop you'll have built a simple ambient bitcoin price vis
 - Step 1: [Basic LED Circuit](/step1)
 - Step 2: [Turn and LED on and Off with a pushbutton](/step2)
 - Step 3: [Adding a Potentiometer and Fading the LED](/step3)
-- TODO - Step 4: [Adding Internet - Seeing Values](/step4)
+- Step 4: [Adding Internet - Seeing Values](/step4)
 - TODO - Step 5: [Controling Color](/step5)
 - TODO - Step 6: [Weather Data](/step6)
 - TODO - Step 7: [Displaying Temperature](/step7)

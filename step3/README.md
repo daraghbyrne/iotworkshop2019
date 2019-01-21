@@ -26,7 +26,7 @@ Make some changes to the circuit and add in the potentiometer:
 - Wire the other to Power (3V3)
 - Wire the middle to A5
 
-![Potentiometer circuit](LedSwitchPot_bb.png)
+![Potentiometer circuit](LedSwitchPot_bb.jpg)
 
 ## Code
 

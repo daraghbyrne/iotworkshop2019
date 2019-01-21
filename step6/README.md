@@ -50,7 +50,7 @@ Add the following:
 - Event Name: `bitcoin`
 - URL: `https://api.cryptonator.com/api/ticker/{{{PARTICLE_EVENT_VALUE}}}`
 - Request Type: `GET`
-- Request Format: `JSON`
+- Request Format: `Query Parameters`
 - Device: `Any`
 
 Select the Advanced Options:

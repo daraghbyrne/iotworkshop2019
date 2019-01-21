@@ -3,7 +3,7 @@
 
 ## Circuit
 
-First things first, we'll make the circuit that our Photon will control!
+First things first, we'll make the circuit that our Argon will control!
 
 - __Add an LED (long leg closest to the pin)__
 - __Add a 1K Ohm resistor to connect it to `D2`__
@@ -39,7 +39,7 @@ Your development environment should now look like this:
 
 ## Starting a Sketch
 
-Our sketches for a Photon will always start the same way.
+Our sketches for a Argon will always start the same way.
 
 Every sketch needs two functions or blocks of code to exist. The first is `setup()` and the other is `loop()`. Setup is called once every time the program is run. This happens when the program is first put on the microcontroller, every time it is powered on and every time the reset button is pressed.
 
@@ -95,7 +95,7 @@ The first command in our program does exactly this.
 
 ````
 void setup() {
-  // We want to tell the Photon that we'll use
+  // We want to tell the Argon that we'll use
   // D2 as an output pin.
   pinMode(ledPin, OUTPUT);
 }
@@ -151,7 +151,7 @@ Looks like we’re ready to put this program on your microcontroller.
 
 ### Compiling and sending to the Particle device
 
-1. Make sure the Status Bar (bottom of Particle Dev) has a device connected and the photon’s indicator is breathing blue. If not make sure your Photon is connected by USB and is getting a WiFi signal.
+1. Make sure the Status Bar (bottom of Particle Dev) has a device connected and the Argon’s indicator is breathing blue. If not make sure your Argon is connected by USB and is getting a WiFi signal.
 
   __Note__ To choose your device, either click the Status bar at the bottom (it'll say either "No devices selected" or it'll list your device. Click on this to see a list of available devices. 
 
@@ -159,7 +159,7 @@ Looks like we’re ready to put this program on your microcontroller.
 
   [If the Lightning bolt is disabled / greyed out, you might not have saved your sketch - see Step 2 for details]
 
-3. You’ll see a message ‘Compiling in the Cloud’ and a few sections later your Photon should start flashing magenta.
+3. You’ll see a message ‘Compiling in the Cloud’ and a few sections later your Argon should start flashing magenta.
 
 4. Wait a few moments, it should return to breathing blue, and the LED should begin to flash!
 

@@ -100,11 +100,11 @@ Great. We're good to go now...
 
 1. Make sure you save your sketch. 
 
-1. Make sure the Status Bar (bottom of Particle Dev) has a device connected and the photon’s indicator is breathing blue. If not make sure your Photon is connected by USB and is getting a WiFi signal.
+1. Make sure the Status Bar (bottom of Particle Dev) has a device connected and the Argon’s indicator is breathing blue. If not make sure your Argon is connected by USB and is getting a WiFi signal.
 
 2. Press the Lightning bolt on the top left of the window.
 
-3. You’ll see a message ‘Compiling in the Cloud’ and a few sections later your Photon should start flashing magenta.
+3. You’ll see a message ‘Compiling in the Cloud’ and a few sections later your Argon should start flashing magenta.
 
 4. Wait a few moments, it should return to breathing blue, and the LED should begin to flash!
 

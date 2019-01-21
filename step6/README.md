@@ -4,12 +4,12 @@ All the pieces are in place. We just need to bring them together...
 
 But first, how do we know the weather? 
 
-Particle allows us to make requests for bits of information from online sources by using something called "Webhooks". When the Photon wants to find out come info from an online service (the weather, how many emails you have, if a stock price is up or down, etc.), the Photon can trigger a request to that service. The Particle Cloud manages the request to that source and returns it to the Photon.
+Particle allows us to make requests for bits of information from online sources by using something called "Webhooks". When the Argon wants to find out come info from an online service (the weather, how many emails you have, if a stock price is up or down, etc.), the Argon can trigger a request to that service. The Particle Cloud manages the request to that source and returns it to the Argon.
 
 The way webhooks work is as follows:
 
 1. Each webhook has a unique name and maps to some piece of information that's found online
-1. When your photon wants some information from a webhook. And when it does it'll publish an event. That event will have the same name as the webhook. e.g. If I have a webhook called 'get-news-articles' then I'd send an event with the same name (Particle.publish('get-news-articles'))
+1. When your Argon wants some information from a webhook. And when it does it'll publish an event. That event will have the same name as the webhook. e.g. If I have a webhook called 'get-news-articles' then I'd send an event with the same name (Particle.publish('get-news-articles'))
 2. The webhook will be triggered and it'll go off and find the bit of information we're looking for
 3. When it's found it, it publishes a new event called 'hook-response/webhookname' that my decive is listening for. This event has the info we want in it.
 4. My device gets the info and can do cool stuff. 
@@ -102,7 +102,7 @@ void handleForecastReceived(const char *event, const char *data) {
 
 Making progress.
 
-Now you also need to tell your Photon to listen for the response to the webhook. To do this, add this line of code to the end of your `setup()`
+Now you also need to tell your Argon to listen for the response to the webhook. To do this, add this line of code to the end of your `setup()`
 
 `````
   Particle.subscribe("hook-response/forecast", handleForecastReceived, MY_DEVICES);

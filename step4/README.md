@@ -2,7 +2,7 @@
 
 It'd be really useful to know what value our potentiometer is giving, right? 
 
-One of the best things about the Photon is that it's connected to the internet. And it let's you put this kind of information from your device online, really really quickly. It lets you see what's happening on your device, make readings and other values available in just a line of code! You can connect all sort of actions and fuctions of your device online too. 
+One of the best things about the Argon is that it's connected to the internet. And it let's you put this kind of information from your device online, really really quickly. It lets you see what's happening on your device, make readings and other values available in just a line of code! You can connect all sort of actions and fuctions of your device online too. 
 
 We're going to look at how to make some of this information visible in this section! 
 

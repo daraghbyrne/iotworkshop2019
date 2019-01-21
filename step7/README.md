@@ -1,6 +1,6 @@
 # Step 7: Displaying Temperature
 
-We're going to visualize the weather from blue to red (cold to hot). To do this we're going to take the temperature value we receive from the webhook and map it into the RGB LED of the Photon.
+We're going to visualize the weather from blue to red (cold to hot). To do this we're going to take the temperature value we receive from the webhook and map it into the RGB LED of the Argon.
 
 We really only need the Red and Blue components, so the green will always be off.
 

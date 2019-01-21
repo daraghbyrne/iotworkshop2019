@@ -2,11 +2,11 @@
 
 We've covered all the basics and got the core of our circuit built. Now it's time to start making our connected product: an ambient weather visualisation. 
 
-Right now, we've got an LED in our circuit. But its only a single color and that's not ideal. The good news is that the Particle Photon has an in-built RGB led that's controlable.
+Right now, we've got an LED in our circuit. But its only a single color and that's not ideal. The good news is that the Particle Argon has an in-built RGB led that's controlable.
 
 We're going to use this _full color LED_ as the main feedback for our ambient weather viz! 
 
-Oh and you might have wondered about the __ping-pong ball in your kits__. Try popping it over the LED on your Photon - you'll find it diffuses the light really nicely. 
+Oh and you might have wondered about the __ping-pong ball in your kits__. Try popping it over the LED on your Argon - you'll find it diffuses the light really nicely. 
 
 ![A RGB LED](rgbled.jpg)
 

@@ -23,9 +23,9 @@ Zero changes. Literally none.
 
 ## Code
 
-The [completed code](code-by-end/PhotonHue.ino) is available in the folder above.
+The [completed code](code-by-end/ArgonHue.ino) is available in the folder above.
 
-Copy and Paste this into Particle Dev, compile and flash to your photon.
+Copy and Paste this into Particle Dev, compile and flash to your Argon.
 
 ## Try it out
 

@@ -1,8 +1,8 @@
 // Define a pin we'll place an LED on
-int ledPin = D3;
+int ledPin = D2;
 
 // Our button wired to D0
-int buttonPin = D4;
+int buttonPin = D3;
 
 void setup()
 {

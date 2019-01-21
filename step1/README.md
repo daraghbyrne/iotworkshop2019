@@ -13,7 +13,7 @@ First things first, we'll make the circuit that our Argon will control!
 
 To make this circuit you need a Particle microcontroller, an LED, a 1KΩ resistor (brown, black, red)
 
-Along your Particle device you will see a series of PINs or legs labeled `D0` to `D7`. These are the digitalPins which can be used for input or output. In this case we’ll be using them for output or to turn power on and off to make the LED blink.
+Along your Particle device you will see a series of PINs or legs labeled `D2` to `D8`. These are the digitalPins which can be used for input or output. In this case we’ll be using them for output or to turn power on and off to make the LED blink.
 
 First connect a 1K Ohm resistor (brown,black red)
 - One end of the resistor goes to a breadboard terminal directly beside the pin marked D2 
@@ -28,9 +28,9 @@ Finally, near the `GND` pin use another jumper cable to connect it to the power 
 
 ## Getting Ready to Program
 
-We have our circuit ready… now we can use Particle Dev to tell it what to do.
+We have our circuit ready… now we can use Particle Build to tell it what to do.
 
-Open it up and open a new Window if needed. Then choose the `File` menu and `Save`. Create a new folder called `LedBlink` and save the sketch inside it as `LedBlink.ino`  __Notice the folder and the file name are the same__  We need to include a ‘.ino’ extension on our files so that the development environment recognises it as code for our microcontroller.
+Open it up and open a new Window if needed. Then choose the `File` menu and `Save`. Create a new folder called `LedBlink` and save the sketch inside it as `LedBlink`
 
 Your development environment should now look like this:
 
@@ -151,7 +151,7 @@ Looks like we’re ready to put this program on your microcontroller.
 
 ### Compiling and sending to the Particle device
 
-1. Make sure the Status Bar (bottom of Particle Dev) has a device connected and the Argon’s indicator is breathing blue. If not make sure your Argon is connected by USB and is getting a WiFi signal.
+1. Make sure the Status Bar (bottom of Particle Build) has a device connected and the Argon’s indicator is breathing blue. If not make sure your Argon is connected by USB and is getting a WiFi signal.
 
   __Note__ To choose your device, either click the Status bar at the bottom (it'll say either "No devices selected" or it'll list your device. Click on this to see a list of available devices. 
 

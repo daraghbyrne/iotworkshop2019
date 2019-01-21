@@ -94,7 +94,7 @@ The [completed code](code-by-end/LED.ino) is available in the folder above.
 
 1. Make sure you save your sketch. 
 
-1. Make sure the Status Bar (bottom of Particle Dev) has a device connected and the Argon’s indicator is breathing blue. If not make sure your Argon is connected by USB and is getting a WiFi signal.
+1. Make sure the Status Bar (bottom of Particle Build) has a device connected and the Argon’s indicator is breathing blue. If not make sure your Argon is connected by USB and is getting a WiFi signal.
 
 2. Press the Lightning bolt on the top left of the window.
 

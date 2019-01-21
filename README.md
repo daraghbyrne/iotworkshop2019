@@ -14,15 +14,16 @@ As part of this workshop you'll have a kit with
 - A momentary push button
 - A Photocell / photoresistor
 
-By the end of this workshop you'll have built a simple ambient weather visualization using this components. It'll work like this:
-- the pushbutton will let you turn the visualization on (displaying) and off (no lights).
-- the potentiometer will work like a dial allowing you to select multiple cities 
-- in the background, the microcontroller will look up weather data online 
-- while it's retrieving data, the LED will blink to let you know
-- it'll display temperature information on the device using the inbuilt RGB (full color) LED.
-- hot places will be displayed with with a red color (>95F or more) and cool blue will indicate temperatures of 50F or less.
-- it'll automatically update every 10 minutes. 
+By the end of this workshop you'll have built a simple ambient bitcoin price visualization using this components. It'll work like this:
 
+- the pushbutton will let you turn the visualization on (displaying) and off (no lights).
+- the potentiometer will work like a dial allowing you to select different currencies
+- in the background, the microcontroller will look up pricing data online 
+- while it's retrieving data, the LED will blink to let you know
+- it'll display rate of change information on the device using a Neopixel RGB (full color) LED.
+- a 24 hour changes of 5% will be displayed by a cool blue; and if it changes by -5% or more you'll see an angry red.
+- it'll automatically update every 1 minutes. 
+- it'll fade slowly to the new color 
 
 ### Step by Step
 
@@ -34,10 +35,10 @@ By the end of this workshop you'll have built a simple ambient weather visualiza
 - Step 6: [Weather Data](/step6)
 - Step 7: [Displaying Temperature](/step7)
 - Step 8: [Better Loading](/step8)
-- Step 9: [Adding Multiple Cities](/step9)
+- Step 9: [Adding Multiple Currencies](/step9)
 - Step 10: [Fine Tuning - On/Off](/step10)
 
-By the end of this you should have a working Weather Lamp. This is only a starting point. With a little effort, you can easily modify this example to be an ambient orb that visualizes a tonne of different content. It could be adapted to display stock prices, arriving buses, bitcoin trading, slack notifications, inbox zero, and lots more. 
+By the end of this you should have a working Ambient Orb . This is only a starting point. With a little effort, you can easily modify this example to be an ambient orb that visualizes a tonne of different content. It could be adapted to display weather, stock prices, arriving buses, slack notifications, inbox count, and lots more. 
 
 ### One Circuit Many Possibilities
 

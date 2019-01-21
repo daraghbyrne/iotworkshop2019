@@ -13,7 +13,7 @@ The mapping will look like this:
 In your code add the following method
 
 ````
-void displayTemperature()
+void displayChange()
 {
    // the change is in %
    // map takes an integer.

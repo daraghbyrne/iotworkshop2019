@@ -36,7 +36,7 @@ Next, if the button is pushed (reading `LOW`) then we want to toggle it on or of
 
 As a bonus you can also publish the toggle to see it unfold!
 
-Then finally we just decide if we should display the temperature or nothing at all based on the variable `ledState`. Modify the loop to wrap `displayChange()`  in an `if` statement like so
+Then finally we just decide if we should display the change or nothing at all based on the variable `ledState`. Modify the loop to wrap `displayChange()`  in an `if` statement like so
 
 ````
 

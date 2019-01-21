@@ -113,7 +113,7 @@ You know the drill. Save your code. Flash your code. Fingers crossed. It'll appe
 
 To know if it worked, open up the console ([http://console.particle.io](http://console.particle.io)) and you should see something like this when the device restarts
 
-![Events Console](console.png)
+![Events Console](console-new.png)
 
 
 

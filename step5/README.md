@@ -42,7 +42,6 @@ Make some changes to the circuit and add in the RGB LED:
 
 ![RGB LED circuit](AmbientOrbCircuit_bb.png)
 
-
 ## Library
 
 Many many times when we write code to make a project or a component work, someone out there has already figured it out. From talking to sensors to interacting with complex components like screens or LED strips, libraries allow the community of developers to package their code up and share it. Once shared, you can quickly and easily import it into your project and benefit from their hardwork. 

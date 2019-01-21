@@ -40,7 +40,7 @@ In addition on the Argon/Boron/Xenon, only one pin per group can be used at a ti
 
 Make some changes to the circuit and add in the RGB LED: 
 
-![RGB LED circuit](AmbientOrbCircuit_bb.png)
+![RGB LED circuit](AmbientOrbCircuit_bb.jpg)
 
 ## Library
 
